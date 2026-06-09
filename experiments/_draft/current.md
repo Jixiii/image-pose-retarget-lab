@@ -13,7 +13,7 @@ metadata:
   date: 
   # model_tool:nano banana pro
   model_tool:GPT Image2
-  notes: 
+  notes: 输出 1 的发型不对，但是 rest pose 正视图看不到头发，也能接受吧，应该需要输入多个视角的角色图片。输出 1、2、3、4 左右上下肢反了。输出的腿粗程度会变化。
 
 inputs:
   image_1:
@@ -45,7 +45,7 @@ metadata:
   date: 
   model_tool:nano banana pro
   # model_tool:GPT Image2
-  notes: 
+  notes: 输出 1、2、3 的上下肢左右反了。也是有发型的问题，输出 4 的动作正常。
 
 inputs:
   image_1:
