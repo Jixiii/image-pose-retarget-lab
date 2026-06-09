@@ -1,0 +1,13 @@
+case_id: E008
+task: pose_retarget
+
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-pose6.png
+
+output_view_policy: "match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body"
+notes: "Use Body-Block no-skeleton rest pose as character source and native_1 pose6 as pose reference."

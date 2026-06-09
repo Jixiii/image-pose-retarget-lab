@@ -1,0 +1,83 @@
+<h2>从现有 Pilot 实验收敛出的第一版 Controlled Benchmark</h2>
+<p class="subtitle">E001-E008 说明：模型对“角色图是否带姿态”“pose reference 是否有骨架线”“视角约束”“动作难度”都很敏感。第一版 benchmark 应该先控制变量，而不是一开始混入视频、T2M、多相机等复杂来源。</p>
+
+<div class="section">
+  <h3>现有实验已经说明了什么</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="pilot-rest-source" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>角色图用 rest pose 会更干净</h3>
+        <p>E006/E007 比前面更稳定，因为角色输入图本身不再携带强姿态，减少了“角色姿态”和“参考姿态”互相干扰。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="pilot-no-skeleton" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>去掉骨架线有帮助，但不是根治</h3>
+        <p>no-skeleton reference 能减少一些误识别，但左右翻转、多肢体、视角漂移仍然会出现。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="pilot-hard-pose" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>大幅动作更能暴露核心问题</h3>
+        <p>E008 的 pose6 让两个模型都出现上下肢左右反的问题，所以测试集必须有动作难度分级，不能只测简单站姿。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="pilot-prompt-fixed" onclick="toggleSelect(this)">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3>Prompt 应该固定</h3>
+        <p>E005-E008 已经收敛出一版比较强的角色/姿态/视角/左右约束 prompt。后续 benchmark 应主要改变输入，不要每个 case 都改 prompt。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>第一版 controlled benchmark 结构</h3>
+  <div class="mockup">
+    <div class="mockup-header">变量网格</div>
+    <div class="mockup-body">
+      <div style="display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:10px;align-items:stretch">
+        <div class="placeholder" style="min-height:92px"><strong>固定项</strong><br>目标角色：rest pose<br>相机/构图：固定<br>prompt：固定</div>
+        <div class="placeholder" style="min-height:92px"><strong>动作等级 1</strong><br>简单站姿 / 手臂动作</div>
+        <div class="placeholder" style="min-height:92px"><strong>动作等级 2</strong><br>非对称肢体 / 身体转向</div>
+        <div class="placeholder" style="min-height:92px"><strong>动作等级 3</strong><br>大幅动作 / 交叉 / 遮挡</div>
+        <div class="placeholder" style="min-height:92px"><strong>Pose 来源</strong><br>标准人体渲染图</div>
+        <div class="placeholder" style="min-height:92px">T01<br>rest 角色 + 简单 pose</div>
+        <div class="placeholder" style="min-height:92px">T02<br>rest 角色 + 非对称 pose</div>
+        <div class="placeholder" style="min-height:92px">T03<br>rest 角色 + 困难 pose</div>
+        <div class="placeholder" style="min-height:92px"><strong>模型重复</strong><br>同输入、同 prompt</div>
+        <div class="placeholder" style="min-height:92px">GPT Image2<br>4 个候选输出</div>
+        <div class="placeholder" style="min-height:92px">nano banana pro<br>4 个候选输出</div>
+        <div class="placeholder" style="min-height:92px">可选第三个模型<br>保持同样输入</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Stage A 评价标签</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>主要指标</h4>
+      <ul>
+        <li>pose 是否匹配</li>
+        <li>左右肢体是否正确</li>
+        <li>视角和构图是否匹配</li>
+        <li>角色身份、风格、材质是否保留</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>失败类型</h4>
+      <ul>
+        <li>多肢体 / 少肢体</li>
+        <li>配件变形或方向错误</li>
+        <li>参考角色身份泄漏</li>
+        <li>身体比例或局部形状漂移</li>
+      </ul>
+    </div>
+  </div>
+</div>

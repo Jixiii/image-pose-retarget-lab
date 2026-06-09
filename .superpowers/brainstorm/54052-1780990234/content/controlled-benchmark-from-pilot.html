@@ -1,0 +1,83 @@
+<h2>Controlled Benchmark From Existing Pilot Runs</h2>
+<p class="subtitle">E001-E008 show the model is sensitive to character-pose entanglement, skeleton hints, viewpoint, and pose difficulty. This screen compresses those observations into a first controlled benchmark shape.</p>
+
+<div class="section">
+  <h3>What The Pilot Already Tested</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="pilot-rest-source" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>Rest-pose character source helps</h3>
+        <p>E006 and E007 are cleaner than earlier posed-character inputs because the character image carries less pose interference.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="pilot-no-skeleton" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>No-skeleton references are useful</h3>
+        <p>Removing skeleton lines reduced some confusion, but did not eliminate left-right flips or limb artifacts.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="pilot-hard-pose" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>Harder poses expose the core failure</h3>
+        <p>E008 with a larger pose change produced consistent limb-side errors across models, so the benchmark needs pose difficulty levels.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="pilot-prompt-fixed" onclick="toggleSelect(this)">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3>Prompt should be fixed</h3>
+        <p>E005-E008 already converged to a strong role/view/left-right prompt. Future tests should vary inputs, not rewrite the prompt every time.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>First Controlled Benchmark Proposal</h3>
+  <div class="mockup">
+    <div class="mockup-header">Factor Grid</div>
+    <div class="mockup-body">
+      <div style="display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:10px;align-items:stretch">
+        <div class="placeholder" style="min-height:84px"><strong>Fixed</strong><br>target character source: rest pose<br>fixed camera/framing<br>fixed prompt</div>
+        <div class="placeholder" style="min-height:84px"><strong>Pose Level 1</strong><br>simple standing / arms</div>
+        <div class="placeholder" style="min-height:84px"><strong>Pose Level 2</strong><br>asymmetric limbs / turn</div>
+        <div class="placeholder" style="min-height:84px"><strong>Pose Level 3</strong><br>large motion / crossing / occlusion</div>
+        <div class="placeholder" style="min-height:84px"><strong>Reference Source</strong><br>standard rendered human</div>
+        <div class="placeholder" style="min-height:84px">T01<br>rest character + easy pose</div>
+        <div class="placeholder" style="min-height:84px">T02<br>rest character + asymmetric pose</div>
+        <div class="placeholder" style="min-height:84px">T03<br>rest character + hard pose</div>
+        <div class="placeholder" style="min-height:84px"><strong>Model Repeats</strong><br>same input, same prompt</div>
+        <div class="placeholder" style="min-height:84px">GPT Image2 x4 candidates</div>
+        <div class="placeholder" style="min-height:84px">nano banana pro x4 candidates</div>
+        <div class="placeholder" style="min-height:84px">optional third model</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Evaluation Labels For Stage A</h3>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Primary</h4>
+      <ul>
+        <li>pose match</li>
+        <li>left-right correctness</li>
+        <li>viewpoint/framing match</li>
+        <li>identity/style preservation</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Failure Notes</h4>
+      <ul>
+        <li>extra or missing limbs</li>
+        <li>accessory deformation</li>
+        <li>reference-character leakage</li>
+        <li>body proportion drift</li>
+      </ul>
+    </div>
+  </div>
+</div>

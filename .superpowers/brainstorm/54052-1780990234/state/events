@@ -1,0 +1,5 @@
+{"type":"click","text":"1\n      \n        角色图用 rest pose 会更干净\n        E006/E007 比前面更稳定，因为角色输入图本身不再携带强姿态，减少了“角色姿态”和“参考姿态”互相干扰。","choice":"pilot-rest-source","id":null,"timestamp":1780991465062}
+{"type":"click","text":"2\n      \n        去掉骨架线有帮助，但不是根治\n        no-skeleton reference 能减少一些误识别，但左右翻转、多肢体、视角漂移仍然会出现。","choice":"pilot-no-skeleton","id":null,"timestamp":1780991465793}
+{"type":"click","text":"3\n      \n        大幅动作更能暴露核心问题\n        E008 的 pose6 让两个模型都出现上下肢左右反的问题，所以测试集必须有动作难度分级，不能只测简单站姿。","choice":"pilot-hard-pose","id":null,"timestamp":1780991474226}
+{"type":"click","text":"3\n      \n        大幅动作更能暴露核心问题\n        E008 的 pose6 让两个模型都出现上下肢左右反的问题，所以测试集必须有动作难度分级，不能只测简单站姿。","choice":"pilot-hard-pose","id":null,"timestamp":1780991474759}
+{"type":"click","text":"4\n      \n        Prompt 应该固定\n        E005-E008 已经收敛出一版比较强的角色/姿态/视角/左右约束 prompt。后续 benchmark 应主要改变输入，不要每个 case 都改 prompt。","choice":"pilot-prompt-fixed","id":null,"timestamp":1780991482260}
