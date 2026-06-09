@@ -1,0 +1,17 @@
+run_id: r002
+case_id: E006
+date: 2026-06-09
+model_tool: "GPT Image2"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-noSkeleton-pose1.png
+prompt: experiments/E006/runs/r002/prompt.md
+outputs_dir: experiments/E006/runs/r002/outputs/
+output_count: 4
+notes: "测试 gpt。角色扭曲的情况改善。输出 4 剑的朝向改变 pose 改变；输出 2 pose 稍显别扭一点；输出 1、3 都正常"

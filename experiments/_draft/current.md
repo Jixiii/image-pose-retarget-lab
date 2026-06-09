@@ -6,22 +6,22 @@
 
 ```yaml
 target:
-  case_id: E005
-  run_id: r003
+  case_id: E007
+  run_id: r001
 
 metadata:
   date: 
-  # model_tool:nano banana pro
-  model_tool:GPT Image2
-  notes: 测试 ref pose 没有骨架。输出 1 差不多；输出 2 剑的方向不对，姿势有点怪；输出 3 姿势很怪；输出 4 还可以。
+  model_tool:nano banana pro
+  # model_tool:GPT Image2
+  notes: 
 
 inputs:
   image_1:
     role: character_input
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
   image_2:
     role: pose_reference
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-pose1.png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
 prompt: |
   Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
 
@@ -38,22 +38,22 @@ prompt: |
 
 ```yaml
 target:
-  case_id: E005
-  run_id: r004
+  case_id: E007
+  run_id: r002
 
 metadata:
   date: 
-  model_tool:nano banana pro
-  # model_tool:GPT Image2
-  notes: 测试 nanobanana。输出 1 剑的方向不对，下肢左右反了；输出 2视角不对；输出 3 视角不对，动作幅度有点大了；输出 4 ok
+  # model_tool:nano banana pro
+  model_tool:GPT Image2
+  notes: 测试 gpt。角色扭曲的情况改善。输出 4 剑的朝向改变 pose 改变；输出 2 pose 稍显别扭一点；输出 1、3 都正常
 
 inputs:
   image_1:
     role: character_input
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
   image_2:
     role: pose_reference
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-pose1.png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
 prompt: |
   Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
 

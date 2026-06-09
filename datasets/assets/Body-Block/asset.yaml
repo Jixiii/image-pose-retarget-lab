@@ -11,5 +11,6 @@ renders:
   body_block_pose1: renders/body-block-pose1.png
   body_block_pose2: renders/body-block-pose2.png
   body_block_no_skeleton_pose2_neg_y: renders/body-block-noSkeleton-pose2-(-Y).png
+  body_block_no_skeleton_rest_pose1_neg_y: renders/body-block-noSkeleton-rest-pose1-(-Y).png
 notes:
   - Source asset and pose renders are available.

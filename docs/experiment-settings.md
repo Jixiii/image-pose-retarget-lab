@@ -39,6 +39,7 @@
 | R004 | native_1 | datasets/assets/native_1/renders/native1-pose1.png | pose1 | front | character_input or pose_reference | E002 r001 image 1; E003 r001 image 2 |
 | R005 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png | pose2_no_skeleton | -Y | character_input or pose_reference | E002 r002/r003 image 2; E003 r002 image 1; E004 r001 image 1; E005 r001/r002 image 1 |
 | R006 | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-pose1.png | pose1_no_skeleton | front | pose_reference | E005 r003/r004 image 2 |
+| R007 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | rest_pose1_no_skeleton | -Y | character_input | E006 r001/r002 image 1 |
 
 ## Case 结果总表
 
@@ -49,6 +50,7 @@
 | E003 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-pose2.png | native_1 | datasets/assets/native_1/renders/native1-pose1.png | centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | r002 使用 run.yaml 中的输入图 |
 | E004 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-pose1.png | match_pose_reference_viewpoint_centered_uncropped_full_body | r001 |  |  |  |  |  |  |  | 更改描述，固定视角 |
 | E005 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-pose1.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002, r003, r004 |  |  |  |  |  |  |  | r003/r004 使用 no-skeleton reference pose |
+| E006 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-pose1.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | 输入角色改为 rest pose |
 
 ## Run 输出分组
 
@@ -66,6 +68,8 @@
 | r002 | E005 | 2026-06-08 | GPT Image2 | character_image, pose_reference | 4 | experiments/E005/runs/r002/outputs/ | 测试 gpt image2。输出 1 动作不协调，输出 2 动作非常不协调，输出 1、2 都把 ref pose 的左手识别为了个棍子；输出 3 pose 也不太自然；输出 4 还是识别为了左手拿棍子 |
 | r003 | E005 | 2026-06-08 | GPT Image2 | character_image, pose_reference | 4 | experiments/E005/runs/r003/outputs/ | 测试 ref pose 没有骨架。输出 1 差不多；输出 2 剑的方向不对，姿势有点怪；输出 3 姿势很怪；输出 4 还可以。 |
 | r004 | E005 | 2026-06-08 | nano banana pro | character_image, pose_reference | 4 | experiments/E005/runs/r004/outputs/ | 测试 nanobanana。输出 1 剑的方向不对，下肢左右反了；输出 2视角不对；输出 3 视角不对，动作幅度有点大了；输出 4 ok |
+| r001 | E006 | 2026-06-09 | nano banana pro | character_image, pose_reference | 4 | experiments/E006/runs/r001/outputs/ | 测试输入的参考角色是 rest pose。效果感觉好了不少，角色图本身的干扰减少了。输出 1、2、4 都还行（需不需要输出剑有歧义，输出与否都接受），输出 3 的视角改变且动作反了。 |
+| r002 | E006 | 2026-06-09 | GPT Image2 | character_image, pose_reference | 4 | experiments/E006/runs/r002/outputs/ | 测试 gpt。角色扭曲的情况改善。输出 4 剑的朝向改变 pose 改变；输出 2 pose 稍显别扭一点；输出 1、3 都正常 |
 
 ## Candidate 评价
 

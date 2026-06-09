@@ -606,6 +606,94 @@ Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do
                 <div class="path">experiments/E005/runs/r004/outputs/ai_generate_8006_4.png</div>
               </td>
             </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="Body-Block no skeleton rest pose1 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-noSkeleton-pose1.png" alt="native_1 no skeleton pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E006 run1（r001）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Preserve image 1's identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use image 2's character identity, face, outfit, colors, materials, or style.
+
+Use image 2 only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2's viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from image 2: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in image 2.
+
+Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do not create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>测试输入的参考角色是 rest pose。效果感觉好了不少，角色图本身的干扰减少了。输出 1、2、4 都还行（需不需要输出剑有歧义，输出与否都接受），输出 3 的视角改变且动作反了。</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r001/outputs/ai_generate_8127_1.png" alt="E006 r001 output 1">
+                <div class="path">experiments/E006/runs/r001/outputs/ai_generate_8127_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r001/outputs/ai_generate_8127_2.png" alt="E006 r001 output 2">
+                <div class="path">experiments/E006/runs/r001/outputs/ai_generate_8127_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r001/outputs/ai_generate_8127_3.png" alt="E006 r001 output 3">
+                <div class="path">experiments/E006/runs/r001/outputs/ai_generate_8127_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r001/outputs/ai_generate_8127_4.png" alt="E006 r001 output 4">
+                <div class="path">experiments/E006/runs/r001/outputs/ai_generate_8127_4.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="Body-Block no skeleton rest pose1 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-noSkeleton-pose1.png" alt="native_1 no skeleton pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E006 run2（r002）</div>
+                  <div><strong>模型</strong>GPT Image2</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Preserve image 1's identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use image 2's character identity, face, outfit, colors, materials, or style.
+
+Use image 2 only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2's viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from image 2: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in image 2.
+
+Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do not create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>测试 gpt。角色扭曲的情况改善。输出 4 剑的朝向改变 pose 改变；输出 2 pose 稍显别扭一点；输出 1、3 都正常</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r002/outputs/ai_generate_8129_1.png" alt="E006 r002 output 1">
+                <div class="path">experiments/E006/runs/r002/outputs/ai_generate_8129_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r002/outputs/ai_generate_8129_2.png" alt="E006 r002 output 2">
+                <div class="path">experiments/E006/runs/r002/outputs/ai_generate_8129_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r002/outputs/ai_generate_8129_3.png" alt="E006 r002 output 3">
+                <div class="path">experiments/E006/runs/r002/outputs/ai_generate_8129_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E006/runs/r002/outputs/ai_generate_8129_4.png" alt="E006 r002 output 4">
+                <div class="path">experiments/E006/runs/r002/outputs/ai_generate_8129_4.png</div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

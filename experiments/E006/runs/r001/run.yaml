@@ -1,0 +1,17 @@
+run_id: r001
+case_id: E006
+date: 2026-06-09
+model_tool: "nano banana pro"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-noSkeleton-pose1.png
+prompt: experiments/E006/runs/r001/prompt.md
+outputs_dir: experiments/E006/runs/r001/outputs/
+output_count: 4
+notes: "测试输入的参考角色是 rest pose。效果感觉好了不少，角色图本身的干扰减少了。输出 1、2、4 都还行（需不需要输出剑有歧义，输出与否都接受），输出 3 的视角改变且动作反了。"
