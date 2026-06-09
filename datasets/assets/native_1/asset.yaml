@@ -9,5 +9,6 @@ blender:
 renders:
   native1_pose1: renders/native1-pose1.png
   native1_no_skeleton_pose1: renders/native1-noSkeleton-pose1.png
+  native1_no_skeleton_rest_pose1_x: renders/native1-noSkeleton-rest-pose1-X.png
 notes:
   - Source asset and pose render are available.

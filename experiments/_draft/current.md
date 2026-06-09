@@ -6,22 +6,22 @@
 
 ```yaml
 target:
-  case_id: E007
+  case_id: E008
   run_id: r001
 
 metadata:
   date: 
-  model_tool:nano banana pro
-  # model_tool:GPT Image2
+  # model_tool:nano banana pro
+  model_tool:GPT Image2
   notes: 
 
 inputs:
   image_1:
     role: character_input
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
   image_2:
     role: pose_reference
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-pose6.png
 prompt: |
   Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
 
@@ -43,17 +43,17 @@ target:
 
 metadata:
   date: 
-  # model_tool:nano banana pro
-  model_tool:GPT Image2
-  notes: 测试 gpt。角色扭曲的情况改善。输出 4 剑的朝向改变 pose 改变；输出 2 pose 稍显别扭一点；输出 1、3 都正常
+  model_tool:nano banana pro
+  # model_tool:GPT Image2
+  notes: 
 
 inputs:
   image_1:
     role: character_input
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
   image_2:
     role: pose_reference
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-pose6.png
 prompt: |
   Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
 
