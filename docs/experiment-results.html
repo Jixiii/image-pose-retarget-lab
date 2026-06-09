@@ -91,11 +91,12 @@
     }
 
     .image-strip {
-      display: flex;
+      display: grid;
       gap: 10px;
       max-width: 100%;
-      overflow-x: auto;
-      overscroll-behavior-x: contain;
+      max-height: 360px;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
       padding: 10px 10px 12px;
       background: #f0f6f3;
       border-left: 4px solid var(--accent);
@@ -103,13 +104,12 @@
     }
 
     .image-strip .image-item {
-      flex: 0 0 180px;
-      min-width: 180px;
+      min-width: 0;
     }
 
     .image-strip img {
-      height: 220px;
-      max-height: 220px;
+      height: auto;
+      max-height: 260px;
       width: 100%;
     }
 
