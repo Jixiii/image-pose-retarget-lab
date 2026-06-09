@@ -1,0 +1,22 @@
+  case_id: E010
+  task: pose_retarget
+
+  character_input:
+    asset_id: Body-Block
+    render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+  character_inputs:
+    - asset_id: Body-Block
+      render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+    - asset_id: Body-Block
+      render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png
+    - asset_id: Body-Block
+      render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png
+
+  pose_references:
+    - asset_id: native_1
+      render: datasets/assets/native_1/renders/native1-noSkeleton-pose1.png
+    - asset_id: native_1
+      render: datasets/assets/native_1/renders/native1-pose6.png
+
+  output_view_policy: "multi_character_views_match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body"
+  notes: "Use three Body-Block no-skeleton rest pose views as character sources and one native_1 pose image as pose reference per run."

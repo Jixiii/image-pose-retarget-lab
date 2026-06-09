@@ -1,0 +1,17 @@
+run_id: r004
+case_id: E009
+date: 2026-06-09
+model_tool: "nano banana pro"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
+pose_reference:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png
+prompt: experiments/E009/runs/r004/prompt.md
+outputs_dir: experiments/E009/runs/r004/outputs/
+output_count: 4
+notes: "新 prompt nano banana 测试。性能略有下降，输出 3 剑位置错误；输出1、4 pose 不正确；输出 2 角色形象有点改变。"

@@ -90,6 +90,29 @@
       border-radius: 6px;
     }
 
+    .image-strip {
+      display: flex;
+      gap: 10px;
+      max-width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding: 10px 10px 12px;
+      background: #f0f6f3;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+    }
+
+    .image-strip .image-item {
+      flex: 0 0 180px;
+      min-width: 180px;
+    }
+
+    .image-strip img {
+      height: 220px;
+      max-height: 220px;
+      width: 100%;
+    }
+
     .path {
       margin-top: 8px;
       color: var(--muted);
@@ -958,6 +981,333 @@ Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do
               <div class="path">experiments/E009/runs/r002/outputs/ai_generate_8268_4.png</div>
             </td>
 </tr>
+<tr>
+  <td class="image-cell">
+              <img src="../datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png" alt="native_1 no skeleton rest pose1 X character input">
+              <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png</div>
+            </td>
+  <td class="image-cell">
+              <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png" alt="Body-Block no skeleton pose2 -X reference">
+              <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png</div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E009 run3（r003）</div>
+      <div><strong>模型</strong>GPT Image2</div>
+      <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Use image 1 as the only source for identity, character design, body proportions, topology, face, hairstyle, outfit, colors, materials, accessories, props, equipment, and local part shapes. Preserve all visible character-specific details from image 1, including any held objects or attached accessories. Do not remove, hide, duplicate, replace, or redesign them.
+
+Use image 2 only for pose, limb arrangement, body orientation, camera viewpoint, and framing. Match the pose and viewpoint from image 2, but do not copy image 2&#39;s identity, clothing, materials, accessories, props, style, topology, surface details, or local part shapes.
+
+When transferring the pose, preserve image 1&#39;s stylization, topology, and local part shapes. Do not import local shape details, surface details, or part topology from image 2.
+
+Do not mirror, flip, or left-right swap the pose. Preserve exact limb correspondence: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg.
+
+If image 1&#39;s character design conflicts with image 2&#39;s body appearance, image 1 always wins for appearance and topology. Image 2 only controls pose, viewpoint, and framing. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>更新 prompt，改进佩剑消失、手改变的问题。现在是出现剑了，但是出错率比较高，输出 2、4 多了只手，输出 3 没有拿住剑，输出 1、2、3、4 的人物朝向都不太一致。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E009/runs/r003/outputs/ai_generate_8301_1.png" alt="E009 r003 output 1">
+              <div class="path">experiments/E009/runs/r003/outputs/ai_generate_8301_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E009/runs/r003/outputs/ai_generate_8301_2.png" alt="E009 r003 output 2">
+              <div class="path">experiments/E009/runs/r003/outputs/ai_generate_8301_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E009/runs/r003/outputs/ai_generate_8301_3.png" alt="E009 r003 output 3">
+              <div class="path">experiments/E009/runs/r003/outputs/ai_generate_8301_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E009/runs/r003/outputs/ai_generate_8301_4.png" alt="E009 r003 output 4">
+              <div class="path">experiments/E009/runs/r003/outputs/ai_generate_8301_4.png</div>
+            </td>
+</tr>
+<tr>
+  <td class="image-cell">
+              <img src="../datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png" alt="native_1 no skeleton rest pose1 X character input">
+              <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png</div>
+            </td>
+  <td class="image-cell">
+              <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png" alt="Body-Block no skeleton pose2 -X reference">
+              <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png</div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E009 run4（r004）</div>
+      <div><strong>模型</strong>nano banana pro</div>
+      <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Use image 1 as the only source for identity, character design, body proportions, topology, face, hairstyle, outfit, colors, materials, accessories, props, equipment, and local part shapes. Preserve all visible character-specific details from image 1, including any held objects or attached accessories. Do not remove, hide, duplicate, replace, or redesign them.
+
+Use image 2 only for pose, limb arrangement, body orientation, camera viewpoint, and framing. Match the pose and viewpoint from image 2, but do not copy image 2&#39;s identity, clothing, materials, accessories, props, style, topology, surface details, or local part shapes.
+
+When transferring the pose, preserve image 1&#39;s stylization, topology, and local part shapes. Do not import local shape details, surface details, or part topology from image 2.
+
+Do not mirror, flip, or left-right swap the pose. Preserve exact limb correspondence: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg.
+
+If image 1&#39;s character design conflicts with image 2&#39;s body appearance, image 1 always wins for appearance and topology. Image 2 only controls pose, viewpoint, and framing. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>新 prompt nano banana 测试。性能略有下降，输出 3 剑位置错误；输出1、4 pose 不正确；输出 2 角色形象有点改变。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E009/runs/r004/outputs/ai_generate_8317_1.png" alt="E009 r004 output 1">
+              <div class="path">experiments/E009/runs/r004/outputs/ai_generate_8317_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E009/runs/r004/outputs/ai_generate_8317_2.png" alt="E009 r004 output 2">
+              <div class="path">experiments/E009/runs/r004/outputs/ai_generate_8317_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E009/runs/r004/outputs/ai_generate_8317_3.png" alt="E009 r004 output 3">
+              <div class="path">experiments/E009/runs/r004/outputs/ai_generate_8317_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E009/runs/r004/outputs/ai_generate_8317_4.png" alt="E009 r004 output 4">
+              <div class="path">experiments/E009/runs/r004/outputs/ai_generate_8317_4.png</div>
+            </td>
+</tr>
+<tr>
+  <td class="image-cell">
+              <div class="image-strip">
+                <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="E010 character source 1">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png" alt="E010 character source 2">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png" alt="E010 character source 3">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png</div>
+                    </div>
+              </div>
+            </td>
+  <td class="image-cell">
+              <img src="../datasets/assets/native_1/renders/native1-noSkeleton-pose1.png" alt="native_1 pose reference">
+              <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-pose1.png</div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E010 run1（r001）</div>
+      <div><strong>模型</strong>nano banana pro</div>
+      <div><strong>prompt</strong><span class="prompt-text">Images 1-3 = CHARACTER SOURCES. Image 4 = POSE SOURCE. Do not swap these roles.
+
+Use Images 1-3 as references for the same character. Image 1 is the primary character source; the other character images provide additional appearance details and views.
+
+Generate one centered, uncropped, full-body image of the exact character from the character sources performing the pose from the pose source.
+
+Preserve the character sources&#39; identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use the pose source&#39;s character identity, face, outfit, colors, materials, or style.
+
+Use the pose source only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match the pose source&#39;s viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from the pose source: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in the pose source.
+
+The character sources always control appearance. The pose source only controls pose and viewpoint. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>多角色图，单 pose 图。输出 1 下肢左右反了；输出 2 下肢左右反了；输出 1、2、3 有剑。输出 1，2 有头发的完整部分。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E010/runs/r001/outputs/ai_generate_8334_1.png" alt="E010 r001 output 1">
+              <div class="path">experiments/E010/runs/r001/outputs/ai_generate_8334_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r001/outputs/ai_generate_8334_2.png" alt="E010 r001 output 2">
+              <div class="path">experiments/E010/runs/r001/outputs/ai_generate_8334_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r001/outputs/ai_generate_8334_3.png" alt="E010 r001 output 3">
+              <div class="path">experiments/E010/runs/r001/outputs/ai_generate_8334_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r001/outputs/ai_generate_8334_4.png" alt="E010 r001 output 4">
+              <div class="path">experiments/E010/runs/r001/outputs/ai_generate_8334_4.png</div>
+            </td>
+</tr>
+<tr>
+  <td class="image-cell">
+              <div class="image-strip">
+                <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="E010 character source 1">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png" alt="E010 character source 2">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png" alt="E010 character source 3">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png</div>
+                    </div>
+              </div>
+            </td>
+  <td class="image-cell">
+              <img src="../datasets/assets/native_1/renders/native1-noSkeleton-pose1.png" alt="native_1 pose reference">
+              <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-pose1.png</div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E010 run2（r002）</div>
+      <div><strong>模型</strong>GPT Image2</div>
+      <div><strong>prompt</strong><span class="prompt-text">Images 1-3 = CHARACTER SOURCES. Image 4 = POSE SOURCE. Do not swap these roles.
+
+Use Images 1-3 as references for the same character. Image 1 is the primary character source; the other character images provide additional appearance details and views.
+
+Generate one centered, uncropped, full-body image of the exact character from the character sources performing the pose from the pose source.
+
+Preserve the character sources&#39; identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use the pose source&#39;s character identity, face, outfit, colors, materials, or style.
+
+Use the pose source only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match the pose source&#39;s viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from the pose source: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in the pose source.
+
+The character sources always control appearance. The pose source only controls pose and viewpoint. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>多角色图，单 pose 图。没什么对的。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E010/runs/r002/outputs/ai_generate_8335_1.png" alt="E010 r002 output 1">
+              <div class="path">experiments/E010/runs/r002/outputs/ai_generate_8335_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r002/outputs/ai_generate_8335_2.png" alt="E010 r002 output 2">
+              <div class="path">experiments/E010/runs/r002/outputs/ai_generate_8335_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r002/outputs/ai_generate_8335_3.png" alt="E010 r002 output 3">
+              <div class="path">experiments/E010/runs/r002/outputs/ai_generate_8335_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r002/outputs/ai_generate_8335_4.png" alt="E010 r002 output 4">
+              <div class="path">experiments/E010/runs/r002/outputs/ai_generate_8335_4.png</div>
+            </td>
+</tr>
+<tr>
+  <td class="image-cell">
+              <div class="image-strip">
+                <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="E010 character source 1">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png" alt="E010 character source 2">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png" alt="E010 character source 3">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png</div>
+                    </div>
+              </div>
+            </td>
+  <td class="image-cell">
+              <img src="../datasets/assets/native_1/renders/native1-pose6.png" alt="native_1 pose reference">
+              <div class="path">datasets/assets/native_1/renders/native1-pose6.png</div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E010 run3（r003）</div>
+      <div><strong>模型</strong>nano banana pro</div>
+      <div><strong>prompt</strong><span class="prompt-text">Images 1-3 = CHARACTER SOURCES. Image 4 = POSE SOURCE. Do not swap these roles.
+
+Use Images 1-3 as references for the same character. Image 1 is the primary character source; the other character images provide additional appearance details and views.
+
+Generate one centered, uncropped, full-body image of the exact character from the character sources performing the pose from the pose source.
+
+Preserve the character sources&#39; identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use the pose source&#39;s character identity, face, outfit, colors, materials, or style.
+
+Use the pose source only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match the pose source&#39;s viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from the pose source: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in the pose source.
+
+The character sources always control appearance. The pose source only controls pose and viewpoint. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>多角色图，单 pose 图。头发正确，这几个输出都还行，主要在剑的朝向上。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E010/runs/r003/outputs/ai_generate_8338_1.png" alt="E010 r003 output 1">
+              <div class="path">experiments/E010/runs/r003/outputs/ai_generate_8338_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r003/outputs/ai_generate_8338_2.png" alt="E010 r003 output 2">
+              <div class="path">experiments/E010/runs/r003/outputs/ai_generate_8338_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r003/outputs/ai_generate_8338_3.png" alt="E010 r003 output 3">
+              <div class="path">experiments/E010/runs/r003/outputs/ai_generate_8338_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r003/outputs/ai_generate_8338_4.png" alt="E010 r003 output 4">
+              <div class="path">experiments/E010/runs/r003/outputs/ai_generate_8338_4.png</div>
+            </td>
+</tr>
+<tr>
+  <td class="image-cell">
+              <div class="image-strip">
+                <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="E010 character source 1">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png" alt="E010 character source 2">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png" alt="E010 character source 3">
+                      <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png</div>
+                    </div>
+              </div>
+            </td>
+  <td class="image-cell">
+              <img src="../datasets/assets/native_1/renders/native1-pose6.png" alt="native_1 pose reference">
+              <div class="path">datasets/assets/native_1/renders/native1-pose6.png</div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E010 run4（r004）</div>
+      <div><strong>模型</strong>GPT Image2</div>
+      <div><strong>prompt</strong><span class="prompt-text">Images 1-3 = CHARACTER SOURCES. Image 4 = POSE SOURCE. Do not swap these roles.
+
+Use Images 1-3 as references for the same character. Image 1 is the primary character source; the other character images provide additional appearance details and views.
+
+Generate one centered, uncropped, full-body image of the exact character from the character sources performing the pose from the pose source.
+
+Preserve the character sources&#39; identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use the pose source&#39;s character identity, face, outfit, colors, materials, or style.
+
+Use the pose source only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match the pose source&#39;s viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from the pose source: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in the pose source.
+
+The character sources always control appearance. The pose source only controls pose and viewpoint. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>多角色图，单 pose 图。输出 3 身体有点扭曲，其他都比较正常，头发正确。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E010/runs/r004/outputs/ai_generate_8337_1.png" alt="E010 r004 output 1">
+              <div class="path">experiments/E010/runs/r004/outputs/ai_generate_8337_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r004/outputs/ai_generate_8337_2.png" alt="E010 r004 output 2">
+              <div class="path">experiments/E010/runs/r004/outputs/ai_generate_8337_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r004/outputs/ai_generate_8337_3.png" alt="E010 r004 output 3">
+              <div class="path">experiments/E010/runs/r004/outputs/ai_generate_8337_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E010/runs/r004/outputs/ai_generate_8337_4.png" alt="E010 r004 output 4">
+              <div class="path">experiments/E010/runs/r004/outputs/ai_generate_8337_4.png</div>
+            </td>
+</tr>
+
+
+
 
 
           </tbody>

@@ -1,0 +1,17 @@
+run_id: r003
+case_id: E009
+date: 2026-06-09
+model_tool: "GPT Image2"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
+pose_reference:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png
+prompt: experiments/E009/runs/r003/prompt.md
+outputs_dir: experiments/E009/runs/r003/outputs/
+output_count: 4
+notes: "更新 prompt，改进佩剑消失、手改变的问题。现在是出现剑了，但是出错率比较高，输出 2、4 多了只手，输出 3 没有拿住剑，输出 1、2、3、4 的人物朝向都不太一致。"
