@@ -1,0 +1,68 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor and local workspace state
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node/cache artifacts
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Blender files and backups
+*.blend
+*.blend1
+*.blend2
+*.blend@
+*.blend[0-9]
+
+# 3D model and animation exports
+*.fbx
+*.FBX
+*.glb
+*.gltf
+*.obj
+*.mtl
+*.dae
+*.abc
+*.usd
+*.usda
+*.usdc
+*.usdz
+*.bvh
+
+# Large media/video outputs
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Keep image assets versionable.
+!*.png
+!*.jpg
+!*.jpeg
+!*.webp
+!*.gif
+!*.svg

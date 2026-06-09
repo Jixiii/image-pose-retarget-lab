@@ -1,0 +1,13 @@
+id: native_1
+name: Native 1
+asset_type: glb
+source_asset:
+  local_file: source/model.glb
+blender:
+  scene: null
+  render_settings: null
+renders:
+  native1_pose1: renders/native1-pose1.png
+  native1_no_skeleton_pose1: renders/native1-noSkeleton-pose1.png
+notes:
+  - Source asset and pose render are available.

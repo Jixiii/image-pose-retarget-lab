@@ -1,0 +1,13 @@
+id: y_bot
+name: Y Bot
+asset_type: fbx
+source_asset:
+  local_file: source/Y Bot.fbx
+  original_filename: Y Bot.fbx
+blender:
+  scene: blender/Y-bot.blend
+  render_settings: null
+renders:
+  apose_front: renders/Y-bot-Apose-front.png
+notes:
+  - Source asset and one A-pose front render are available.

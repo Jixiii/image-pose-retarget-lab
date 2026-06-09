@@ -1,0 +1,10 @@
+* text=auto
+
+# Treat common binary assets as binary when explicitly tracked.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.svg text
+*.pdf binary

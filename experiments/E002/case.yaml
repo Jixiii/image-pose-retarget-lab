@@ -1,0 +1,13 @@
+case_id: E002
+task: pose_retarget
+
+character_input:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-pose1.png
+
+pose_reference:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-pose2.png
+
+output_view_policy: "centered_uncropped_full_body"
+notes: "Use native_1 pose1 as the character input and Body-Block pose2 only as the pose reference for r001. r002 stores its own run-level inputs."

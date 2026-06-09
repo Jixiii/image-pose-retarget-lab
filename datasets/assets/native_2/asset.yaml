@@ -1,0 +1,11 @@
+id: native_2
+name: Native 2
+asset_type: glb
+source_asset:
+  local_file: source/model.glb
+blender:
+  scene: null
+  render_settings: null
+renders: {}
+notes:
+  - No renders generated yet.

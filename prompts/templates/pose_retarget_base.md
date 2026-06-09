@@ -1,0 +1,1 @@
+Keep the character identity, appearance, material, colors, proportions, outfit, and accessories from image 1. Transfer only the body pose from image 2 to the character in image 1. Output one full-body image. Do not replace the image 1 character with the image 2 character.

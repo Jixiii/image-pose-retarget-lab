@@ -1,0 +1,17 @@
+run_id: r001
+case_id: E005
+date: 2026-06-08
+model_tool: "nano banana pro"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-pose1.png
+prompt: experiments/E005/runs/r001/prompt.md
+outputs_dir: experiments/E005/runs/r001/outputs/
+output_count: 4
+notes: "更改了 prompt，强调角色和参考 pose，强调不要调换左右，强调摄像机视角和构图。输出 1 下肢左右反了；输出 2 视角改变；输出 3 剑的朝向不对，下肢左右反了；输出 4 还可以"

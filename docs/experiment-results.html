@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Retarget 实验结果记录</title>
+  <style>
+    :root {
+      --bg: #f6f7f8;
+      --paper: #ffffff;
+      --ink: #202327;
+      --muted: #626a72;
+      --line: #d7dce0;
+      --accent: #276b58;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 24px 44px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 28px 0 12px;
+      font-size: 20px;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 18px;
+    }
+
+    .prompt {
+      border-left: 4px solid var(--accent);
+      background: #f0f6f3;
+      padding: 12px 14px;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eef2f3;
+      font-weight: 700;
+    }
+
+    .image-cell img {
+      display: block;
+      width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      background: #f2f4f5;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .path {
+      margin-top: 8px;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .run-info {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+    }
+
+    .run-info strong {
+      display: inline-block;
+      min-width: 52px;
+    }
+
+    .run-note {
+      min-height: 40px;
+      border-top: 1px dashed var(--line);
+      padding-top: 8px;
+      color: var(--muted);
+    }
+
+    .results-table th:nth-child(3),
+    .results-table td:nth-child(3) {
+      width: 20%;
+      min-width: 220px;
+      max-width: 280px;
+    }
+
+    .prompt-text {
+      display: block;
+      max-height: 96px;
+      overflow: auto;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 760px) {
+      main { padding: 20px 14px 32px; }
+      table { table-layout: auto; }
+      th, td { min-width: 180px; }
+      .scroll { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Image Retarget 实验结果记录</h1>
+    <p class="lead">每一行记录一次 run：输入图、参考动作、模型、prompt、备注和输出图都放在同一个大表里。</p>
+
+    <section class="section">
+      <h2>实验记录总表</h2>
+      <div class="scroll">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>角色图</th>
+              <th>参考动作</th>
+              <th>提交 / 模型 / prompt / 备注</th>
+              <th>输出 1</th>
+              <th>输出 2</th>
+              <th>输出 3</th>
+              <th>输出 4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/y_bot/renders/Y-bot-Apose-front.png" alt="Y Bot A-pose front">
+                <div class="path">datasets/assets/y_bot/renders/Y-bot-Apose-front.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-pose1.png" alt="Body Block pose reference">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E001 run1（r001）</div>
+                  <div><strong>模型</strong>gpt image2</div>
+                  <div><strong>prompt</strong><span class="prompt-text">生成第一张图的角色做第二张图角色的动作的图片。</span></div>
+                  <div class="run-note"><strong>备注</strong>输出相对稳定，但是输出 1 缺失骨架</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r001/outputs/image_0.png" alt="E001 r001 output 1">
+                <div class="path">experiments/E001/runs/r001/outputs/image_0.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r001/outputs/image_1.png" alt="E001 r001 output 2">
+                <div class="path">experiments/E001/runs/r001/outputs/image_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r001/outputs/image_2.png" alt="E001 r001 output 3">
+                <div class="path">experiments/E001/runs/r001/outputs/image_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r001/outputs/image_3.png" alt="E001 r001 output 4">
+                <div class="path">experiments/E001/runs/r001/outputs/image_3.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/y_bot/renders/Y-bot-Apose-front.png" alt="Y Bot A-pose front">
+                <div class="path">datasets/assets/y_bot/renders/Y-bot-Apose-front.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-pose1.png" alt="Body Block pose reference">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E001 run2（r002）</div>
+                  <div><strong>模型</strong>nanobanana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">生成第一张图的角色做第二张图角色的动作的图片。</span></div>
+                  <div class="run-note"><strong>备注</strong>输出相对稳定</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r002/outputs/ai_generate_7382_1.png" alt="E001 r002 output 1">
+                <div class="path">experiments/E001/runs/r002/outputs/ai_generate_7382_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r002/outputs/ai_generate_7382_2.png" alt="E001 r002 output 2">
+                <div class="path">experiments/E001/runs/r002/outputs/ai_generate_7382_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E001/runs/r002/outputs/ai_generate_7382_3.png" alt="E001 r002 output 3">
+                <div class="path">experiments/E001/runs/r002/outputs/ai_generate_7382_3.png</div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 character input">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-pose2.png" alt="Body-Block pose2 reference">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-pose2.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E002 run1（r001）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Keep the exact character from image 1. Use image 2 only as a pose reference. Transfer the full-body pose from image 2 onto the image 1 character while preserving image 1's identity, design, proportions, colors, and materials. Output one centered, uncropped, full-body image. Do not copy the image 2 character or create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>输出不同稳定，输出3 没有实现 pose retarget；输出 1 没有佩剑</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r001/outputs/ai_generate_7889_1.png" alt="E002 r001 output 1">
+                <div class="path">experiments/E002/runs/r001/outputs/ai_generate_7889_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r001/outputs/ai_generate_7889_2.png" alt="E002 r001 output 2">
+                <div class="path">experiments/E002/runs/r001/outputs/ai_generate_7889_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r001/outputs/ai_generate_7889_3.png" alt="E002 r001 output 3">
+                <div class="path">experiments/E002/runs/r001/outputs/ai_generate_7889_3.png</div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 character input">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y reference">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E002 run2（r002）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Keep the exact character from image 1. Use image 2 only as a pose reference. Transfer the full-body pose from image 2 onto the image 1 character while preserving image 1's identity, design, proportions, colors, and materials. Output one centered, uncropped, full-body image. Do not copy the image 2 character or create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>参考 pose 的骨架去掉之后稳定一些，但是在佩剑方式上有歧义，且输出 2 没有骨架，视角改变</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r002/outputs/ai_generate_7926_1.png" alt="E002 r002 output 1">
+                <div class="path">experiments/E002/runs/r002/outputs/ai_generate_7926_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r002/outputs/ai_generate_7926_2.png" alt="E002 r002 output 2">
+                <div class="path">experiments/E002/runs/r002/outputs/ai_generate_7926_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r002/outputs/ai_generate_7926_3.png" alt="E002 r002 output 3">
+                <div class="path">experiments/E002/runs/r002/outputs/ai_generate_7926_3.png</div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 character input">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y reference">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E002 run3（r003）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Keep the exact character from image 1. Use image 2 only as a pose reference. Transfer the full-body pose from image 2 onto the image 1 character while preserving image 1's identity, design, proportions, colors, and materials. Output one centered, uncropped, full-body image. Do not copy the image 2 character or create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>同 E002r002</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r003/outputs/ai_generate_7940_1.png" alt="E002 r003 output 1">
+                <div class="path">experiments/E002/runs/r003/outputs/ai_generate_7940_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r003/outputs/ai_generate_7940_2.png" alt="E002 r003 output 2">
+                <div class="path">experiments/E002/runs/r003/outputs/ai_generate_7940_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E002/runs/r003/outputs/ai_generate_7940_3.png" alt="E002 r003 output 3">
+                <div class="path">experiments/E002/runs/r003/outputs/ai_generate_7940_3.png</div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-pose2.png" alt="Body-Block pose2 character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-pose2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E003 run1（r001）</div>
+                  <div><strong>模型</strong>GPT Image2</div>
+                  <div><strong>prompt</strong><span class="prompt-text">生成第一张图的角色做第二张图角色的动作的图片。</span></div>
+                  <div class="run-note"><strong>备注</strong>骨架改变为ref pos的骨架形式，相对稳定，后脚的动作生成结果不稳定</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r001/outputs/image_0.png" alt="E003 r001 output 1">
+                <div class="path">experiments/E003/runs/r001/outputs/image_0.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r001/outputs/image_1.png" alt="E003 r001 output 2">
+                <div class="path">experiments/E003/runs/r001/outputs/image_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r001/outputs/image_2.png" alt="E003 r001 output 3">
+                <div class="path">experiments/E003/runs/r001/outputs/image_2.png</div>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E003 run2（r002）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Keep the exact character from image 1. Use image 2 only as a pose reference. Transfer the full-body pose from image 2 onto the image 1 character while preserving image 1's identity, design, proportions, colors, and materials. Output one centered, uncropped, full-body image. Do not copy the image 2 character or create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>生成结果不稳定，输出 1、2 角色选择错误；输出 4 视角改变；输出 3 动作不对，左右腿反了</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r002/outputs/ai_generate_7948_1.png" alt="E003 r002 output 1">
+                <div class="path">experiments/E003/runs/r002/outputs/ai_generate_7948_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r002/outputs/ai_generate_7948_2.png" alt="E003 r002 output 2">
+                <div class="path">experiments/E003/runs/r002/outputs/ai_generate_7948_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r002/outputs/ai_generate_7948_3.png" alt="E003 r002 output 3">
+                <div class="path">experiments/E003/runs/r002/outputs/ai_generate_7948_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E003/runs/r002/outputs/ai_generate_7948_4.png" alt="E003 r002 output 4">
+                <div class="path">experiments/E003/runs/r002/outputs/ai_generate_7948_4.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E004 run1（r001）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Keep the exact character from image 1. Use image 2 only as the reference for the full-body pose, body orientation, camera viewpoint, and framing.
+
+Transfer the full-body pose from image 2 onto the image 1 character while preserving image 1's identity, design, proportions, colors, materials, outfit, face, and texture details.
+
+The output must match image 2's viewing angle: same front/side/back/three-quarter view, same body facing direction, same head direction, same camera height, same perspective, and same full-body framing. Do not convert the character to a default front view. Do not rotate the character away from the viewpoint shown in image 2.
+
+Output one centered, uncropped, full-body image of only the image 1 character, with the entire body visible. Do not copy the image 2 character, clothing, colors, face, style, or create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>更改描述，固定视角。输出 1 的下肢左右反了；输出 234 角色不对，输出 2、3 出现两个右肢，输出4 参考角色和参考 pose 反了</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E004/runs/r001/outputs/ai_generate_7967_1.png" alt="E004 r001 output 1">
+                <div class="path">experiments/E004/runs/r001/outputs/ai_generate_7967_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E004/runs/r001/outputs/ai_generate_7967_2.png" alt="E004 r001 output 2">
+                <div class="path">experiments/E004/runs/r001/outputs/ai_generate_7967_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E004/runs/r001/outputs/ai_generate_7967_3.png" alt="E004 r001 output 3">
+                <div class="path">experiments/E004/runs/r001/outputs/ai_generate_7967_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E004/runs/r001/outputs/ai_generate_7967_4.png" alt="E004 r001 output 4">
+                <div class="path">experiments/E004/runs/r001/outputs/ai_generate_7967_4.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E005 run1（r001）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Preserve image 1's identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use image 2's character identity, face, outfit, colors, materials, or style.
+
+Use image 2 only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2's viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from image 2: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in image 2.
+
+Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do not create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>更改了 prompt，强调角色和参考 pose，强调不要调换左右，强调摄像机视角和构图。输出 1 下肢左右反了；输出 2 视角改变；输出 3 剑的朝向不对，下肢左右反了；输出 4 还可以</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r001/outputs/ai_generate_7986_1.png" alt="E005 r001 output 1">
+                <div class="path">experiments/E005/runs/r001/outputs/ai_generate_7986_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r001/outputs/ai_generate_7986_2.png" alt="E005 r001 output 2">
+                <div class="path">experiments/E005/runs/r001/outputs/ai_generate_7986_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r001/outputs/ai_generate_7986_3.png" alt="E005 r001 output 3">
+                <div class="path">experiments/E005/runs/r001/outputs/ai_generate_7986_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r001/outputs/ai_generate_7986_4.png" alt="E005 r001 output 4">
+                <div class="path">experiments/E005/runs/r001/outputs/ai_generate_7986_4.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-pose1.png" alt="native_1 pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E005 run2（r002）</div>
+                  <div><strong>模型</strong>GPT Image2</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Preserve image 1's identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use image 2's character identity, face, outfit, colors, materials, or style.
+
+Use image 2 only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2's viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from image 2: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in image 2.
+
+Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do not create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>测试 gpt image2。输出 1 动作不协调，输出 2 动作非常不协调，输出 1、2 都把 ref pose 的左手识别为了个棍子；输出 3 pose 也不太自然；输出 4 还是识别为了左手拿棍子</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r002/outputs/ai_generate_7988_1.png" alt="E005 r002 output 1">
+                <div class="path">experiments/E005/runs/r002/outputs/ai_generate_7988_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r002/outputs/ai_generate_7988_2.png" alt="E005 r002 output 2">
+                <div class="path">experiments/E005/runs/r002/outputs/ai_generate_7988_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r002/outputs/ai_generate_7988_3.png" alt="E005 r002 output 3">
+                <div class="path">experiments/E005/runs/r002/outputs/ai_generate_7988_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r002/outputs/ai_generate_7988_4.png" alt="E005 r002 output 4">
+                <div class="path">experiments/E005/runs/r002/outputs/ai_generate_7988_4.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-noSkeleton-pose1.png" alt="native_1 no skeleton pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E005 run3（r003）</div>
+                  <div><strong>模型</strong>GPT Image2</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Preserve image 1's identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use image 2's character identity, face, outfit, colors, materials, or style.
+
+Use image 2 only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2's viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from image 2: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in image 2.
+
+Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do not create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>测试 ref pose 没有骨架。输出 1 差不多；输出 2 剑的方向不对，姿势有点怪；输出 3 姿势很怪；输出 4 还可以。</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r003/outputs/ai_generate_8002_1.png" alt="E005 r003 output 1">
+                <div class="path">experiments/E005/runs/r003/outputs/ai_generate_8002_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r003/outputs/ai_generate_8002_2.png" alt="E005 r003 output 2">
+                <div class="path">experiments/E005/runs/r003/outputs/ai_generate_8002_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r003/outputs/ai_generate_8002_3.png" alt="E005 r003 output 3">
+                <div class="path">experiments/E005/runs/r003/outputs/ai_generate_8002_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r003/outputs/ai_generate_8002_4.png" alt="E005 r003 output 4">
+                <div class="path">experiments/E005/runs/r003/outputs/ai_generate_8002_4.png</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="image-cell">
+                <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png" alt="Body-Block no skeleton pose2 -Y character input">
+                <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../datasets/assets/native_1/renders/native1-noSkeleton-pose1.png" alt="native_1 no skeleton pose1 reference">
+                <div class="path">datasets/assets/native_1/renders/native1-noSkeleton-pose1.png</div>
+              </td>
+              <td>
+                <div class="run-info">
+                  <div><strong>提交</strong>E005 run4（r004）</div>
+                  <div><strong>模型</strong>nano banana pro</div>
+                  <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from image 2.
+
+Preserve image 1's identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use image 2's character identity, face, outfit, colors, materials, or style.
+
+Use image 2 only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2's viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from image 2: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in image 2.
+
+Image 1 always controls appearance. Image 2 only controls pose and viewpoint. Do not create a hybrid.</span></div>
+                  <div class="run-note"><strong>备注</strong>测试 nanobanana。输出 1 剑的方向不对，下肢左右反了；输出 2视角不对；输出 3 视角不对，动作幅度有点大了；输出 4 ok</div>
+                </div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r004/outputs/ai_generate_8006_1.png" alt="E005 r004 output 1">
+                <div class="path">experiments/E005/runs/r004/outputs/ai_generate_8006_1.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r004/outputs/ai_generate_8006_2.png" alt="E005 r004 output 2">
+                <div class="path">experiments/E005/runs/r004/outputs/ai_generate_8006_2.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r004/outputs/ai_generate_8006_3.png" alt="E005 r004 output 3">
+                <div class="path">experiments/E005/runs/r004/outputs/ai_generate_8006_3.png</div>
+              </td>
+              <td class="image-cell">
+                <img src="../experiments/E005/runs/r004/outputs/ai_generate_8006_4.png" alt="E005 r004 output 4">
+                <div class="path">experiments/E005/runs/r004/outputs/ai_generate_8006_4.png</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

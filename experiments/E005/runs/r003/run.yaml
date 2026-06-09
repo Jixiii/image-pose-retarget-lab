@@ -1,0 +1,17 @@
+run_id: r003
+case_id: E005
+date: 2026-06-08
+model_tool: "GPT Image2"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-noSkeleton-pose1.png
+prompt: experiments/E005/runs/r003/prompt.md
+outputs_dir: experiments/E005/runs/r003/outputs/
+output_count: 4
+notes: "测试 ref pose 没有骨架。输出 1 差不多；输出 2 剑的方向不对，姿势有点怪；输出 3 姿势很怪；输出 4 还可以。"

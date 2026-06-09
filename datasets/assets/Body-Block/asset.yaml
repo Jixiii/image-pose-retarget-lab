@@ -1,0 +1,15 @@
+id: Body-Block
+name: Body Block
+asset_type: fbx
+source_asset:
+  local_file: source/Body Block.fbx
+  original_filename: Body Block.fbx
+blender:
+  scene: null
+  render_settings: null
+renders:
+  body_block_pose1: renders/body-block-pose1.png
+  body_block_pose2: renders/body-block-pose2.png
+  body_block_no_skeleton_pose2_neg_y: renders/body-block-noSkeleton-pose2-(-Y).png
+notes:
+  - Source asset and pose renders are available.

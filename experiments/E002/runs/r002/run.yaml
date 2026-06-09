@@ -1,0 +1,17 @@
+run_id: r002
+case_id: E002
+date: 2026-06-08
+model_tool: "nano banana pro"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-pose1.png
+pose_reference:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+prompt: experiments/E002/runs/r002/prompt.md
+outputs_dir: experiments/E002/runs/r002/outputs/
+output_count: 3
+notes: ""

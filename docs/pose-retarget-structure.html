@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Pose Retarget Structure</title>
+  <style>
+    :root {
+      --bg: #f7f6f1;
+      --paper: #ffffff;
+      --ink: #232323;
+      --muted: #626a70;
+      --line: #d8d5ca;
+      --soft: #eef5f2;
+      --blue-soft: #eef3f8;
+      --accent: #2f7d6d;
+      --warn: #946126;
+      --code: #1f2528;
+      --code-text: #eef6f3;
+      --shadow: 0 10px 28px rgba(38, 40, 36, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    button { font: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    h1, h2, h3, p, td, th { overflow-wrap: anywhere; }
+    h1 { margin: 0; font-size: 22px; font-weight: 760; }
+    .subtitle { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+    .mode-switch {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mode-button,
+    .nav-button,
+    .copy-button {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--ink);
+      min-height: 34px;
+      padding: 7px 11px;
+      cursor: pointer;
+      transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+    }
+
+    .mode-button:hover,
+    .nav-button:hover,
+    .copy-button:hover { border-color: var(--accent); }
+
+    .mode-button.active,
+    .nav-button.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .layout {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 22px 24px 40px;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 92px;
+      max-height: calc(100vh - 116px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar-header {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sidebar-title { margin: 0; font-size: 15px; font-weight: 760; }
+    .sidebar-note { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+
+    .nav-list {
+      padding: 12px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .nav-button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      text-align: left;
+      gap: 8px;
+      font-size: 13px;
+      min-height: 38px;
+    }
+
+    .nav-button.depth-0 { padding-left: 10px; }
+    .nav-button.depth-1 { padding-left: 24px; }
+    .nav-button.depth-2 { padding-left: 38px; }
+
+    .node-name {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .node-kind { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .nav-button.active .node-kind { color: rgba(255, 255, 255, 0.82); }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      scroll-margin-top: 94px;
+      min-width: 0;
+    }
+
+    .section.compact { padding: 16px; }
+    .section h2 { margin: 0 0 10px; font-size: 20px; font-weight: 760; }
+    .section h3 { margin: 18px 0 8px; font-size: 16px; font-weight: 740; }
+    .lead, .muted { color: var(--muted); margin: 0; font-size: 14px; }
+
+    .flow {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+      padding: 12px;
+      min-height: 112px;
+    }
+
+    .step strong { display: block; font-size: 13px; margin-bottom: 7px; }
+    .step span { display: block; color: var(--muted); font-size: 12px; }
+
+    .example-strip {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    figure { margin: 0; }
+
+    .image-tile {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfbf8;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .image-tile img {
+      display: block;
+      width: 100%;
+      height: 235px;
+      object-fit: contain;
+      background: #2c2d2d;
+    }
+
+    .image-caption {
+      padding: 10px 11px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .scenario-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--blue-soft);
+      padding: 14px;
+    }
+
+    .scenario-box h3 { margin: 0 0 8px; }
+    .scenario-box ul, .section ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .callout {
+      margin-top: 14px;
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      background: #f3faf7;
+      color: #294640;
+      padding: 12px 13px;
+      font-size: 14px;
+    }
+
+    .callout.warn {
+      border-left-color: var(--warn);
+      background: #fff7ec;
+      color: #5a4027;
+    }
+
+    .code-block {
+      position: relative;
+      margin-top: 10px;
+      border: 1px solid #111;
+      border-radius: 8px;
+      background: var(--code);
+      color: var(--code-text);
+      overflow: hidden;
+    }
+
+    pre {
+      margin: 0;
+      padding: 42px 14px 14px;
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      white-space: pre;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      min-height: 28px;
+      padding: 4px 8px;
+      font-size: 12px;
+      background: #fff;
+    }
+
+    .table-wrap {
+      margin-top: 12px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #fbfbf8; color: var(--muted); font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .mini-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfbf8;
+      padding: 13px;
+      min-width: 0;
+    }
+
+    .mini-panel h3 { margin-top: 0; }
+
+    @media (max-width: 1080px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; }
+      .nav-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .layout { padding: 14px; }
+      .nav-list, .flow, .example-strip, .two-col { grid-template-columns: 1fr; }
+      .image-tile img { height: 210px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div>
+        <h1>Image Pose Retarget 测试结构说明</h1>
+        <p class="subtitle">统一素材库：同一个 asset 可在不同 case 中扮演角色源或姿态源。</p>
+      </div>
+      <div class="mode-switch" aria-label="scenario modes">
+        <button class="mode-button active" data-mode="single">一次提交</button>
+        <button class="mode-button" data-mode="cross">交叉测试</button>
+        <button class="mode-button" data-mode="multiOutput">多候选图</button>
+        <button class="mode-button" data-mode="minimalRecord">最小记录</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="sidebar-title">目录导航</h2>
+        <p class="sidebar-note">点击后跳到正文对应章节。</p>
+      </div>
+      <nav class="nav-list" id="navList" aria-label="structure navigation"></nav>
+    </aside>
+
+    <main class="content">
+      <section class="section" id="overview">
+        <h2>整体逻辑</h2>
+        <p class="lead">不要把素材提前分成 characters 和 poses。你的测试会交叉使用同一批素材，所以 `datasets/assets/` 只保存素材本身；具体某次实验里谁是图 1、谁是图 2，由 `case.yaml` 决定。</p>
+        <div class="flow">
+          <div class="step"><strong>1. assets</strong><span>保存 FBX、Blender 场景、渲染截图和 asset.yaml。</span></div>
+          <div class="step"><strong>2. renders</strong><span>同一个 asset 可有 neutral、tpose、walk 等多组截图。</span></div>
+          <div class="step"><strong>3. case</strong><span>指定 character_input 和 pose_reference。</span></div>
+          <div class="step"><strong>4. run</strong><span>一次网页模型提交，保存不同模型的原始输出。</span></div>
+          <div class="step"><strong>5. candidate</strong><span>一次提交返回多张图，按 cand_01、cand_02 保存。</span></div>
+        </div>
+        <div class="callout">当前规则：asset 元数据只记录项目内相对路径，不记录外部来源路径，也不额外建立来源说明文件。</div>
+      </section>
+
+      <section class="section compact">
+        <div class="scenario-box" id="scenarioBox"></div>
+      </section>
+
+      <section class="section" id="example">
+        <h2>三图示例如何落盘</h2>
+        <p class="lead">图 1 和图 2 都来自 `datasets/assets/` 的某个 render。图 3 是一次 run 返回的 candidate。</p>
+        <div class="example-strip">
+          <figure class="image-tile">
+            <img src="assets/example-character.jpg" alt="character source image">
+            <figcaption class="image-caption">图 1：角色源<br>datasets/assets/bunny_voxel_001/renders/neutral/front.png</figcaption>
+          </figure>
+          <figure class="image-tile">
+            <img src="assets/example-pose.png" alt="pose reference image">
+            <figcaption class="image-caption">图 2：姿态源<br>datasets/assets/robot_001/renders/tpose/front.png</figcaption>
+          </figure>
+          <figure class="image-tile">
+            <img src="assets/example-output.jpg" alt="pose retarget output image">
+            <figcaption class="image-caption">图 3：输出 candidate<br>experiments/.../runs/r001/outputs/cand_01.png</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="tree">
+        <h2>推荐目录结构</h2>
+        <div class="code-block">
+          <button class="copy-button" data-copy>Copy</button>
+          <pre>image-retarget/
+  docs/
+    pose-retarget-structure.html
+    experiment-settings.md
+    experiment-results.html
+  datasets/
+    assets/
+      y_bot/
+        source/
+          Y Bot.fbx
+        blender/
+          Y-bot.blend
+        renders/
+          Y-bot-Apose-front.png
+        asset.yaml
+  experiments/
+    2026-06-05_bunny-voxel-001__pose-from-y-bot__apose-front/
+      case.yaml
+      runs/
+        r001/
+          outputs/
+            cand_01.png
+            cand_02.png
+        r002/
+          outputs/
+            cand_01.png
+  records/
+    codex-2026-06-05-notes.md</pre>
+        </div>
+      </section>
+
+      <section class="section" id="assets">
+        <h2>datasets/assets：统一素材库</h2>
+        <p class="lead">一个 asset 可以是下载的 FBX，也可以是普通参考图片。它不固定属于“角色”或“姿态”；这些角色由 experiment 决定。</p>
+        <div class="two-col">
+          <div class="mini-panel">
+            <h3>asset 目录</h3>
+            <div class="code-block">
+              <button class="copy-button" data-copy>Copy</button>
+              <pre>datasets/assets/y_bot/
+  source/
+    Y Bot.fbx
+  blender/
+    Y-bot.blend
+  renders/
+    Y-bot-Apose-front.png
+  asset.yaml</pre>
+            </div>
+          </div>
+          <div class="mini-panel" id="asset-yaml">
+            <h3>asset.yaml</h3>
+            <div class="code-block">
+              <button class="copy-button" data-copy>Copy</button>
+              <pre>id: y_bot
+name: Y Bot
+asset_type: fbx
+source_asset:
+  local_file: source/Y Bot.fbx
+  original_filename: Y Bot.fbx
+blender:
+  scene: blender/Y-bot.blend
+  render_settings: null
+renders:
+  apose_front: renders/Y-bot-Apose-front.png
+notes:
+  - Source asset and one A-pose front render are available.</pre>
+            </div>
+          </div>
+        </div>
+        <div class="callout warn">`blender/` 和 `renders/` 可以先是空目录。等你在 Blender 里截图后，再按 pose_state/view 放入对应 render。</div>
+      </section>
+
+      <section class="section" id="renders">
+        <h2>renders：真正的 image 输入</h2>
+        <p class="lead">网页模型吃的是图片，不是 FBX。FBX 的作用是让你可以在 Blender 中稳定生成不同姿态和视角的输入图。</p>
+        <div class="code-block">
+          <button class="copy-button" data-copy>Copy</button>
+          <pre>datasets/assets/y_bot/renders/
+  Y-bot-Apose-front.png
+
+datasets/assets/Body-Block/renders/
+  body-block-pose1.png</pre>
+        </div>
+      </section>
+
+      <section class="section" id="case">
+        <h2>case.yaml：决定素材角色</h2>
+        <p class="lead">同一个 asset 可以在不同 case 中交叉使用。case 只记录引用路径，不复制输入图。</p>
+        <div class="code-block">
+          <button class="copy-button" data-copy>Copy</button>
+          <pre>case_id: 2026-06-04_bunny-voxel-001__pose-from-y-bot-001__tpose-front
+task: pose_retarget
+
+character_input:
+  asset_id: bunny_voxel_001
+  render: datasets/assets/bunny_voxel_001/renders/neutral/front.png
+
+pose_reference:
+  asset_id: y_bot
+  render: datasets/assets/y_bot/renders/Y-bot-Apose-front.png
+
+output_view_policy: out-front
+notes: prompt asks image 1 character to perform image 2 pose.</pre>
+        </div>
+      </section>
+
+      <section class="section" id="run">
+        <h2>run：一次网页提交</h2>
+        <p class="lead">一次网页提交就是一个 run。输入 image 不复制到 run 里，而是在 case.yaml 引用 datasets/assets 的 render 路径；run 目录只保存该模型提交返回的原始输出图。</p>
+        <div class="code-block">
+          <button class="copy-button" data-copy>Copy</button>
+          <pre>experiments/&lt;case_id&gt;/
+  case.yaml
+  runs/
+    r001/
+      outputs/
+        cand_01.png
+        cand_02.png
+    r002/
+      outputs/
+        cand_01.png</pre>
+        </div>
+      </section>
+
+      <section class="section" id="prompt">
+        <h2>prompt</h2>
+        <p class="lead">prompt 不再分散写到每个 run 目录下。相同输入图和 prompt 的模型对比，集中写到 docs/experiment-results.html 里。</p>
+        <div class="code-block">
+          <button class="copy-button" data-copy>Copy</button>
+          <pre>Keep the character identity, appearance, material, colors, proportions, outfit, and accessories from image 1. Transfer only the body pose from image 2 to the character in image 1. Output one full-body image. Do not replace the image 1 character with the image 2 character.</pre>
+        </div>
+      </section>
+
+      <section class="section" id="review">
+        <h2>网页总览：候选图评价</h2>
+        <p class="lead">一次网页提交可能返回多张候选图。不要复制 selected 图；在 docs/experiment-results.html 中横向查看、备注和分析。</p>
+        <div class="code-block">
+          <button class="copy-button" data-copy>Copy</button>
+          <pre>| candidate | pose match | identity keep | style keep | artifacts | selected | notes |
+|---|---:|---:|---:|---:|---|---|
+| cand_01 | 3 | 5 | 4 | 2 | no | pose not horizontal enough |
+| cand_02 | 5 | 4 | 4 | 2 | yes | best balance |</pre>
+        </div>
+      </section>
+
+      <section class="section" id="settings">
+        <h2>实验记录表</h2>
+        <p class="lead">结构规则在 docs/experiment-settings.md；可视化结果记录在 docs/experiment-results.html。experiments/ 保存原始输出，records/ 只放过程日志。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>表</th><th>记录什么</th><th>对应目录</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Asset 素材登记</td><td>FBX、Blender、renders、asset.yaml</td><td>datasets/assets/&lt;asset_id&gt;/</td></tr>
+              <tr><td>Render 索引</td><td>每张截图的 pose_state、view、用途</td><td>datasets/assets/.../renders/</td></tr>
+              <tr><td>Case 结果总表</td><td>character_input、pose_reference、run 和 selected_candidate</td><td>experiments/&lt;case_id&gt;/case.yaml</td></tr>
+              <tr><td>Run 输出分组</td><td>不同模型提交的原始输出图</td><td>experiments/&lt;case_id&gt;/runs/r001/outputs/</td></tr>
+              <tr><td>结果网页</td><td>prompt、输入图、输出图、备注和分析</td><td>docs/experiment-results.html</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const navItems = [
+      ["overview", 0, "整体逻辑", "overview"],
+      ["example", 0, "三图示例", "mapping"],
+      ["tree", 0, "目录结构", "tree"],
+      ["assets", 1, "datasets/assets/", "asset"],
+      ["asset-yaml", 2, "asset.yaml", "meta"],
+      ["renders", 1, "renders/", "images"],
+      ["case", 1, "case.yaml", "roles"],
+      ["run", 1, "runs/r001/", "submit"],
+      ["prompt", 2, "prompt", "prompt"],
+      ["review", 1, "结果网页", "view"],
+      ["settings", 0, "实验记录表", "md"]
+    ];
+
+    const scenarios = {
+      single: {
+        title: "一次提交",
+        body: "一次网页提交就是 experiments/<case_id>/runs/r001/。输入 image 由 case.yaml 引用，run 目录只保存该模型提交返回的原始输出图。",
+        items: [
+          "case.yaml 记录 character_input 和 pose_reference 的 datasets/assets 路径。",
+          "docs/experiment-results.html 记录 prompt、输入图和横向结果对比。",
+          "outputs/ 保存 cand_01、cand_02 等候选图。"
+        ]
+      },
+      cross: {
+        title: "交叉测试",
+        body: "同一个 asset 可作为图 1 角色源，也可作为图 2 姿态源。不要物理拆成 characters 和 poses。",
+        items: [
+          "case A: bunny 是 character_input，y_bot 是 pose_reference。",
+          "case B: y_bot 是 character_input，bunny 是 pose_reference。",
+          "角色关系只由 case.yaml 决定。"
+        ]
+      },
+      multiOutput: {
+        title: "多候选图",
+        body: "网页模型一次返回多张图时，它们属于同一个 run 的多个 candidate。",
+        items: [
+          "outputs/cand_01.png、cand_02.png 代表同一次提交的候选。",
+          "prompt 仍然只记录一次。",
+          "备注和分析集中写在 docs/experiment-results.html，不复制图片。"
+        ]
+      },
+      minimalRecord: {
+        title: "records 只放过程日志",
+        body: "records/ 不保存输入图和输出图。它只记录过程、观察、工具和总结。",
+        items: [
+          "图片原始文件属于 experiments/<case_id>/runs/r001/outputs/。",
+          "prompt 和横向对比属于 docs/experiment-results.html。",
+          "过程记录可以写 records/codex-YYYY-MM-DD-*.md。",
+          "不要把输入图放到 records 目录。"
+        ]
+      }
+    };
+
+    const navList = document.getElementById("navList");
+    const scenarioBox = document.getElementById("scenarioBox");
+
+    function renderNav() {
+      navList.innerHTML = navItems.map(([target, depth, label, kind]) => {
+        return `<button class="nav-button depth-${depth}" data-target="${target}">
+          <span class="node-name">${label}</span>
+          <span class="node-kind">${kind}</span>
+        </button>`;
+      }).join("");
+    }
+
+    function setActiveNav(target) {
+      document.querySelectorAll(".nav-button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.target === target);
+      });
+    }
+
+    function renderScenario(mode) {
+      const current = scenarios[mode];
+      scenarioBox.innerHTML = `
+        <h3>${current.title}</h3>
+        <p class="muted">${current.body}</p>
+        <ul>${current.items.map((item) => `<li>${item}</li>`).join("")}</ul>
+      `;
+      document.querySelectorAll(".mode-button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.mode === mode);
+      });
+    }
+
+    function bindNav() {
+      navList.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-target]");
+        if (!button) return;
+        const target = document.getElementById(button.dataset.target);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActiveNav(button.dataset.target);
+      });
+    }
+
+    function bindModes() {
+      document.querySelectorAll(".mode-button").forEach((button) => {
+        button.addEventListener("click", () => renderScenario(button.dataset.mode));
+      });
+    }
+
+    function bindCopy() {
+      document.querySelectorAll("[data-copy]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const text = button.parentElement.querySelector("pre").innerText;
+          await navigator.clipboard.writeText(text);
+          button.innerText = "Copied";
+          setTimeout(() => { button.innerText = "Copy"; }, 900);
+        });
+      });
+    }
+
+    renderNav();
+    bindNav();
+    bindModes();
+    bindCopy();
+    renderScenario("single");
+    setActiveNav("overview");
+  </script>
+</body>
+</html>

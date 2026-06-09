@@ -1,0 +1,13 @@
+case_id: E001
+task: pose_retarget
+
+character_input:
+  asset_id: y_bot
+  render: datasets/assets/y_bot/renders/Y-bot-Apose-front.png
+
+pose_reference:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-pose1.png
+
+output_view_policy: ""
+notes: "Two submissions use the same inputs and prompt; r001 and r002 use different models."

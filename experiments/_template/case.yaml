@@ -1,0 +1,13 @@
+case_id: _template
+task: pose_retarget
+
+character_input:
+  asset_id: ""
+  render: datasets/assets/<asset_id>/renders/<pose_state>/<view>.png
+
+pose_reference:
+  asset_id: ""
+  render: datasets/assets/<asset_id>/renders/<pose_state>/<view>.png
+
+output_view_policy: ""
+notes: ""

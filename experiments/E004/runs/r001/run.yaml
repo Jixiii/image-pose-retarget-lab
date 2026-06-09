@@ -1,0 +1,17 @@
+run_id: r001
+case_id: E004
+date: 2026-06-08
+model_tool: "nano banana pro"
+upload_order:
+  - character_image
+  - pose_reference
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-pose1.png
+prompt: experiments/E004/runs/r001/prompt.md
+outputs_dir: experiments/E004/runs/r001/outputs/
+output_count: 4
+notes: "更改描述，固定视角。输出 1 的下肢左右反了；输出 234 角色不对，输出 2、3 出现两个右肢，输出4 参考角色和参考 pose 反了"
