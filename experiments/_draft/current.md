@@ -6,22 +6,22 @@
 
 ```yaml
 target:
-  case_id: E008
+  case_id: E009
   run_id: r001
 
 metadata:
   date: 
   # model_tool:nano banana pro
   model_tool:GPT Image2
-  notes: 输出 1 的发型不对，但是 rest pose 正视图看不到头发，也能接受吧，应该需要输入多个视角的角色图片。输出角色的体型会变化。
+  notes: 手改变，感觉还是有佩剑合理一点，其他没什么问题。
 
 inputs:
   image_1:
     role: character_input
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
   image_2:
     role: pose_reference
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-pose6.png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png
 prompt: |
   Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
 
@@ -38,22 +38,22 @@ prompt: |
 
 ```yaml
 target:
-  case_id: E008
+  case_id: E009
   run_id: r002
 
 metadata:
   date: 
   model_tool:nano banana pro
   # model_tool:GPT Image2
-  notes: 输出 4 上下肢动作反了。发型的问题
+  notes: 感觉这几个都还不错
 
 inputs:
   image_1:
     role: character_input
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png
   image_2:
     role: pose_reference
-    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/native_1/renders/native1-pose6.png
+    path: /Users/daiminyue/Desktop/study/research/investigate/image-retarget/datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png
 prompt: |
   Image 1 = CHARACTER SOURCE. Image 2 = POSE SOURCE. Do not swap these roles.
 

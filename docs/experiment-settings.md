@@ -42,6 +42,7 @@
 | R007 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | rest_pose1_no_skeleton | -Y | character_input | E006 r001/r002 image 1 |
 | R008 | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png | rest_pose1_no_skeleton | X | character_input | E007 r001/r002 image 1 |
 | R009 | native_1 | datasets/assets/native_1/renders/native1-pose6.png | pose6 | front | pose_reference | E008 r001/r002 image 2 |
+| R010 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png | pose2_no_skeleton | -X | pose_reference | E009 r001/r002 image 2 |
 
 ## Case 结果总表
 
@@ -55,6 +56,7 @@
 | E006 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-pose1.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | 输入角色改为 rest pose |
 | E007 | stage_1_pose_transfer | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2-(-Y).png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | native_1 rest pose 作为角色图 |
 | E008 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-pose6.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | Body-Block rest pose 作为角色图，native_1 pose6 作为参考 pose |
+| E009 | stage_1_pose_transfer | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | native_1 rest pose 作为角色图，Body-Block -X pose2 作为参考 pose |
 
 ## Run 输出分组
 
@@ -78,6 +80,8 @@
 | r002 | E007 | 2026-06-09 | nano banana pro | character_image, pose_reference | 4 | experiments/E007/runs/r002/outputs/ | 错误率有点高。输出 1、2 都有多了一个手的问题，输出 4 的动作不太一样。输出 1、3 的手改变了， |
 | r001 | E008 | 2026-06-09 | GPT Image2 | character_image, pose_reference | 4 | experiments/E008/runs/r001/outputs/ | 输出 1 的发型不对，但是 rest pose 正视图看不到头发，也能接受吧，应该需要输入多个视角的角色图片。输出角色的体型会变化。 |
 | r002 | E008 | 2026-06-09 | nano banana pro | character_image, pose_reference | 4 | experiments/E008/runs/r002/outputs/ | 输出 4 上下肢动作反了。发型的问题 |
+| r001 | E009 | 2026-06-09 | GPT Image2 | character_image, pose_reference | 4 | experiments/E009/runs/r001/outputs/ | 手改变，感觉还是有佩剑合理一点，其他没什么问题。 |
+| r002 | E009 | 2026-06-09 | nano banana pro | character_image, pose_reference | 4 | experiments/E009/runs/r002/outputs/ | 感觉这几个都还不错 |
 
 ## Candidate 评价
 
