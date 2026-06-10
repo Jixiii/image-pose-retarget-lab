@@ -1,0 +1,35 @@
+run_id: r002
+case_id: E012
+date: 2026-06-10
+model_tool: "GPT Image2"
+upload_order:
+  - character_image_1
+  - character_image_2
+  - character_image_3
+  - pose_reference_1
+  - pose_reference_2
+  - pose_reference_3
+character_input:
+  asset_id: Body-Block
+  render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+character_inputs:
+  - asset_id: Body-Block
+    render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png
+  - asset_id: Body-Block
+    render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png
+  - asset_id: Body-Block
+    render: datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png
+pose_reference:
+  asset_id: native_1
+  render: datasets/assets/native_1/renders/native1-frame11-X.png
+pose_references:
+  - asset_id: native_1
+    render: datasets/assets/native_1/renders/native1-frame11-X.png
+  - asset_id: native_1
+    render: datasets/assets/native_1/renders/native1-frame11--Y.png
+  - asset_id: native_1
+    render: datasets/assets/native_1/renders/native1-frame11-Y.png
+prompt: experiments/E012/runs/r002/prompt.md
+outputs_dir: experiments/E012/runs/r002/outputs/
+output_count: 4
+notes: "输出视角都不对，输出 4 是左手拿剑；输出 1、2 下肢左右反了。"
