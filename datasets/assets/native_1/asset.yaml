@@ -11,5 +11,8 @@ renders:
   native1_no_skeleton_pose1: renders/native1-noSkeleton-pose1.png
   native1_no_skeleton_rest_pose1_x: renders/native1-noSkeleton-rest-pose1-X.png
   native1_pose6: renders/native1-pose6.png
+  native1_frame11_y: renders/native1-frame11-Y.png
+  native1_frame11_neg_y: renders/native1-frame11--Y.png
+  native1_frame11_x: renders/native1-frame11-X.png
 notes:
   - Source asset and pose render are available.

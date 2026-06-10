@@ -146,9 +146,9 @@
 
     .results-table th:nth-child(3),
     .results-table td:nth-child(3) {
-      width: 20%;
-      min-width: 220px;
-      max-width: 280px;
+      width: 16%;
+      min-width: 180px;
+      max-width: 240px;
     }
 
     .prompt-text {
@@ -1305,6 +1305,123 @@ The character sources always control appearance. The pose source only controls p
               <div class="path">experiments/E010/runs/r004/outputs/ai_generate_8337_4.png</div>
             </td>
 </tr>
+<tr>
+  <td class="image-cell">
+              <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="Body-Block character source">
+              <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+            </td>
+  <td class="image-cell">
+              <div class="image-strip">
+                <div class="image-item">
+                      <img src="../datasets/assets/native_1/renders/native1-frame11-X.png" alt="E011 pose source 1">
+                      <div class="path">datasets/assets/native_1/renders/native1-frame11-X.png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/native_1/renders/native1-frame11--Y.png" alt="E011 pose source 2">
+                      <div class="path">datasets/assets/native_1/renders/native1-frame11--Y.png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/native_1/renders/native1-frame11-Y.png" alt="E011 pose source 3">
+                      <div class="path">datasets/assets/native_1/renders/native1-frame11-Y.png</div>
+                    </div>
+              </div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E011 run1（r001）</div>
+      <div><strong>模型</strong>nano banana pro</div>
+      <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Images 2-4 = POSE SOURCES. Do not swap these roles.
+
+Use Images 2-4 as references for the same pose. Image 2 is the primary pose source and controls the final camera viewpoint, body facing direction, and framing.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from the pose sources.
+
+Preserve image 1&#39;s identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use the pose sources&#39; character identity, face, outfit, colors, materials, or style.
+
+Use the pose sources only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2&#39;s viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from the pose sources: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in the pose sources.
+
+Image 1 always controls appearance. The pose sources only control pose and viewpoint. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>单角色图，多 pose 图。视角都不对，输出 2 角色错误；输出 1 下肢左右不对。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E011/runs/r001/outputs/ai_generate_8384_1.png" alt="E011 r001 output 1">
+              <div class="path">experiments/E011/runs/r001/outputs/ai_generate_8384_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E011/runs/r001/outputs/ai_generate_8384_2.png" alt="E011 r001 output 2">
+              <div class="path">experiments/E011/runs/r001/outputs/ai_generate_8384_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E011/runs/r001/outputs/ai_generate_8384_3.png" alt="E011 r001 output 3">
+              <div class="path">experiments/E011/runs/r001/outputs/ai_generate_8384_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E011/runs/r001/outputs/ai_generate_8384_4.png" alt="E011 r001 output 4">
+              <div class="path">experiments/E011/runs/r001/outputs/ai_generate_8384_4.png</div>
+            </td>
+</tr>
+<tr>
+  <td class="image-cell">
+              <img src="../datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png" alt="Body-Block character source">
+              <div class="path">datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png</div>
+            </td>
+  <td class="image-cell">
+              <div class="image-strip">
+                <div class="image-item">
+                      <img src="../datasets/assets/native_1/renders/native1-frame11-X.png" alt="E011 pose source 1">
+                      <div class="path">datasets/assets/native_1/renders/native1-frame11-X.png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/native_1/renders/native1-frame11--Y.png" alt="E011 pose source 2">
+                      <div class="path">datasets/assets/native_1/renders/native1-frame11--Y.png</div>
+                    </div>
+                    <div class="image-item">
+                      <img src="../datasets/assets/native_1/renders/native1-frame11-Y.png" alt="E011 pose source 3">
+                      <div class="path">datasets/assets/native_1/renders/native1-frame11-Y.png</div>
+                    </div>
+              </div>
+            </td>
+  <td>
+    <div class="run-info">
+      <div><strong>提交</strong>E011 run2（r002）</div>
+      <div><strong>模型</strong>GPT Image2</div>
+      <div><strong>prompt</strong><span class="prompt-text">Image 1 = CHARACTER SOURCE. Images 2-4 = POSE SOURCES. Do not swap these roles.
+
+Use Images 2-4 as references for the same pose. Image 2 is the primary pose source and controls the final camera viewpoint, body facing direction, and framing.
+
+Generate one centered, uncropped, full-body image of the exact character from image 1 performing the pose from the pose sources.
+
+Preserve image 1&#39;s identity, face, hairstyle, body proportions, outfit, colors, materials, accessories, and design details. Do not use the pose sources&#39; character identity, face, outfit, colors, materials, or style.
+
+Use the pose sources only for the full-body pose, anatomical limb arrangement, body orientation, camera viewpoint, and framing. Match image 2&#39;s viewing angle and body facing direction.
+
+Do not mirror, flip, or left-right swap the pose. Preserve the exact limb correspondence from the pose sources: left arm to left arm, right arm to right arm, left leg to left leg, right leg to right leg. Keep which limb is forward, behind, raised, lowered, bent, straight, crossed, or weight-bearing exactly as shown in the pose sources.
+
+Image 1 always controls appearance. The pose sources only control pose and viewpoint. Do not create a hybrid.</span></div>
+      <div class="run-note"><strong>备注</strong>单角色图，多 pose 图。输出 2 下肢动作不对；输出 3 下肢动作不对；输出 4 下肢左右反了。视角和角色都是正确的。</div>
+    </div>
+  </td>
+  <td class="image-cell">
+              <img src="../experiments/E011/runs/r002/outputs/ai_generate_8385_1.png" alt="E011 r002 output 1">
+              <div class="path">experiments/E011/runs/r002/outputs/ai_generate_8385_1.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E011/runs/r002/outputs/ai_generate_8385_2.png" alt="E011 r002 output 2">
+              <div class="path">experiments/E011/runs/r002/outputs/ai_generate_8385_2.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E011/runs/r002/outputs/ai_generate_8385_3.png" alt="E011 r002 output 3">
+              <div class="path">experiments/E011/runs/r002/outputs/ai_generate_8385_3.png</div>
+            </td>
+            <td class="image-cell">
+              <img src="../experiments/E011/runs/r002/outputs/ai_generate_8385_4.png" alt="E011 r002 output 4">
+              <div class="path">experiments/E011/runs/r002/outputs/ai_generate_8385_4.png</div>
+            </td>
+</tr>
+
 
 
 

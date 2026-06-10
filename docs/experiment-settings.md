@@ -45,6 +45,9 @@
 | R010 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png | pose2_no_skeleton | -X | pose_reference | E009 r001/r002 image 2 |
 | R011 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png | rest_pose1_no_skeleton | -X | character_input | E010 r001-r004 image 2 |
 | R012 | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png | rest_pose1_no_skeleton | Y | character_input | E010 r001-r004 image 3 |
+| R013 | native_1 | datasets/assets/native_1/renders/native1-frame11-X.png | frame11 | X | pose_reference | E011 r001/r002 image 2 |
+| R014 | native_1 | datasets/assets/native_1/renders/native1-frame11--Y.png | frame11 | -Y | pose_reference | E011 r001/r002 image 3 |
+| R015 | native_1 | datasets/assets/native_1/renders/native1-frame11-Y.png | frame11 | Y | pose_reference | E011 r001/r002 image 4 |
 
 ## Case 结果总表
 
@@ -60,6 +63,7 @@
 | E008 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-pose6.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | Body-Block rest pose 作为角色图，native_1 pose6 作为参考 pose |
 | E009 | stage_1_pose_transfer | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-rest-pose1-X.png | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-pose2--X.png | match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002, r003, r004 |  |  |  |  |  |  |  | native_1 rest pose 作为角色图，Body-Block -X pose2 作为参考 pose |
 | E010 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png<br>datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-X).png<br>datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-Y.png | native_1 | datasets/assets/native_1/renders/native1-noSkeleton-pose1.png; datasets/assets/native_1/renders/native1-pose6.png | multi_character_views_match_pose_reference_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002, r003, r004 |  |  |  |  |  |  |  | 多角色图，单 pose 图 |
+| E011 | stage_1_pose_transfer | Body-Block | datasets/assets/Body-Block/renders/body-block-noSkeleton-rest-pose1-(-Y).png | native_1 | datasets/assets/native_1/renders/native1-frame11-X.png<br>datasets/assets/native_1/renders/native1-frame11--Y.png<br>datasets/assets/native_1/renders/native1-frame11-Y.png | single_character_multi_pose_views_primary_pose_viewpoint_no_left_right_swap_centered_uncropped_full_body | r001, r002 |  |  |  |  |  |  |  | 单角色图，多 pose 图 |
 
 ## Run 输出分组
 
@@ -91,6 +95,8 @@
 | r002 | E010 | 2026-06-09 | GPT Image2 | character_image_1, character_image_2, character_image_3, pose_reference | 4 | experiments/E010/runs/r002/outputs/ | 多角色图，单 pose 图。没什么对的。 |
 | r003 | E010 | 2026-06-09 | nano banana pro | character_image_1, character_image_2, character_image_3, pose_reference | 4 | experiments/E010/runs/r003/outputs/ | 多角色图，单 pose 图。头发正确，这几个输出都还行，主要在剑的朝向上。 |
 | r004 | E010 | 2026-06-09 | GPT Image2 | character_image_1, character_image_2, character_image_3, pose_reference | 4 | experiments/E010/runs/r004/outputs/ | 多角色图，单 pose 图。输出 3 身体有点扭曲，其他都比较正常，头发正确。 |
+| r001 | E011 | 2026-06-10 | nano banana pro | character_image, pose_reference_1, pose_reference_2, pose_reference_3 | 4 | experiments/E011/runs/r001/outputs/ | 单角色图，多 pose 图。视角都不对，输出 2 角色错误；输出 1 下肢左右不对。 |
+| r002 | E011 | 2026-06-10 | GPT Image2 | character_image, pose_reference_1, pose_reference_2, pose_reference_3 | 4 | experiments/E011/runs/r002/outputs/ | 单角色图，多 pose 图。输出 2 下肢动作不对；输出 3 下肢动作不对；输出 4 下肢左右反了。视角和角色都是正确的。 |
 
 ## Candidate 评价
 
