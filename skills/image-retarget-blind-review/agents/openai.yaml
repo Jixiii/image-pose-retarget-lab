@@ -1,4 +1,4 @@
 interface:
   display_name: "Image Retarget Blind Review"
   short_description: "Blind-review image retarget run outputs"
-  default_prompt: "Use -retarget-blind-review to test E001r001."
+  default_prompt: "Use $image-retarget-blind-review to test E001r001."

@@ -1,85 +1,57 @@
 ---
 name: image-retarget-blind-review
-description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
+description: Project-local workflow for blind-reviewing image pose-retarget experiment runs in this repository. Use when the user asks to test/analyze a run such as "测试E001r001", "测试 E011 r002", or wants Codex to read docs/experiment-results.html, inspect the corresponding input/output images, identify per-candidate visual errors, and write the result to Markdown before any confirmed update to docs/experiment-results.html.
 ---
 
 # Image Retarget Blind Review
 
-## Overview
+Use this project-local skill to evaluate whether a vision model or Codex can understand pose-retarget outputs without seeing the user's prior notes.
 
-[TODO: 1-2 sentences explaining what this skill enables]
+## Workflow
 
-## Structuring This Skill
+1. Parse the requested run id, accepting compact forms like `E001r001`, `E001 r001`, or `E001 run1`.
+2. For one run, run the helper from the repository root:
 
-[TODO: Choose the structure that best fits this skill's purpose. Common patterns:
+   ```bash
+   python3 skills/image-retarget-blind-review/scripts/prepare_blind_review.py E001r001
+   ```
 
-**1. Workflow-Based** (best for sequential processes)
-- Works well when there are clear step-by-step procedures
-- Example: DOCX skill with "Workflow Decision Tree" -> "Reading" -> "Creating" -> "Editing"
-- Structure: ## Overview -> ## Workflow Decision Tree -> ## Step 1 -> ## Step 2...
+3. For stage-one queue setup, prepare every real run and an index:
 
-**2. Task-Based** (best for tool collections)
-- Works well when the skill offers different operations/capabilities
-- Example: PDF skill with "Quick Start" -> "Merge PDFs" -> "Split PDFs" -> "Extract Text"
-- Structure: ## Overview -> ## Quick Start -> ## Task Category 1 -> ## Task Category 2...
+   ```bash
+   python3 skills/image-retarget-blind-review/scripts/prepare_blind_review.py --all --index
+   ```
 
-**3. Reference/Guidelines** (best for standards or specifications)
-- Works well for brand guidelines, coding standards, or requirements
-- Example: Brand styling with "Brand Guidelines" -> "Colors" -> "Typography" -> "Features"
-- Structure: ## Overview -> ## Guidelines -> ## Specifications -> ## Usage...
+4. The helper reads `docs/experiment-results.html` first. If the HTML row is incomplete, it falls back to `experiments/<case>/case.yaml`, `experiments/<case>/runs/<run>/run.yaml`, `prompt.md`, and `outputs/`.
+5. The helper writes Markdown drafts under `records/blind-reviews/<case>-<run>-blind-review.md` with task images, candidate images, an isolated-review prompt, and an empty analysis form.
+6. With `--all`, existing review files are skipped unless `--overwrite` is provided. This protects already-filled blind analyses.
+7. Inspect the listed images directly. Do not read or use `run.yaml` notes, HTML remarks, or previous human notes before writing the blind review.
+8. Fill the Markdown with concrete per-candidate errors. Do not modify `docs/experiment-results.html` unless the user confirms the blind review should be recorded there.
 
-**4. Capabilities-Based** (best for integrated systems)
-- Works well when the skill provides multiple interrelated features
-- Example: Product Management with "Core Capabilities" -> numbered capability list
-- Structure: ## Overview -> ## Core Capabilities -> ### 1. Feature -> ### 2. Feature...
+## Isolation Rule
 
-Patterns can be mixed and matched as needed. Most skills combine patterns (e.g., start with task-based, add workflow for complex operations).
+Use one fresh conversation per run. Within a run, compare all candidates together. Across runs, do not reuse context, conclusions, or previous blind-review files.
 
-Delete this entire "Structuring This Skill" section when done - it's just guidance.]
+The generated `records/blind-reviews/index.md` contains a copyable prompt for each run. Use that prompt in a fresh conversation and restrict the analysis to the named review packet plus linked images.
 
-## [TODO: Replace with the first main section based on chosen structure]
+## Review Criteria
 
-[TODO: Add content here. See examples in existing skills:
-- Code samples for technical skills
-- Decision trees for complex workflows
-- Concrete examples with realistic user requests
-- References to scripts/templates/references as needed]
+Prioritize task correctness over visual attractiveness:
 
-## Resources (optional)
+1. Role separation: the output should use the character source identity, not the pose source identity.
+2. Pose match: limbs, torso, stance, body orientation, and weight-bearing structure should match the pose source.
+3. Viewpoint and framing: camera view, body-facing direction, centering, and full-body visibility should match the task.
+4. Left/right correctness: do not mirror or swap left and right limbs.
+5. Identity and style preservation: body proportions, colors, materials, hairstyle, outfit, and accessories should remain from the character source.
+6. Artifact control: no extra limbs, missing limbs, broken hands/feet, distorted body parts, or malformed accessories.
 
-Create only the resource directories this skill actually needs. Delete this section if no resources are required.
+Use these tags when helpful:
 
-### scripts/
-Executable code (Python/Bash/etc.) that can be run directly to perform specific operations.
+`pose_mismatch`, `identity_drift`, `style_drift`, `accessory_lost`, `accessory_deformed`, `extra_limb`, `missing_limb`, `view_mismatch`, `left_right_flip`, `body_deformation`, `role_swap`, `framing_error`.
 
-**Examples from other skills:**
-- PDF skill: `fill_fillable_fields.py`, `extract_form_field_info.py` - utilities for PDF manipulation
-- DOCX skill: `document.py`, `utilities.py` - Python modules for document processing
+## Output Discipline
 
-**Appropriate for:** Python scripts, shell scripts, or any executable code that performs automation, data processing, or specific operations.
-
-**Note:** Scripts may be executed without loading into context, but can still be read by Codex for patching or environment adjustments.
-
-### references/
-Documentation and reference material intended to be loaded into context to inform Codex's process and thinking.
-
-**Examples from other skills:**
-- Product management: `communication.md`, `context_building.md` - detailed workflow guides
-- BigQuery: API reference documentation and query examples
-- Finance: Schema documentation, company policies
-
-**Appropriate for:** In-depth documentation, API references, database schemas, comprehensive guides, or any detailed information that Codex should reference while working.
-
-### assets/
-Files not intended to be loaded into context, but rather used within the output Codex produces.
-
-**Examples from other skills:**
-- Brand styling: PowerPoint template files (.pptx), logo files
-- Frontend builder: HTML/React boilerplate project directories
-- Typography: Font files (.ttf, .woff2)
-
-**Appropriate for:** Templates, boilerplate code, document templates, images, icons, fonts, or any files meant to be copied or used in the final output.
-
----
-
-**Not every skill requires all three types of resources.**
+- Keep the review blind: omit human notes from the analysis section.
+- Choose a best candidate only after describing every candidate.
+- If all candidates are flawed, choose the least bad one and say it is only relatively best.
+- Save the analysis in the generated Markdown file first; later synchronization into `docs/experiment-results.html` is a separate user-confirmed step.
